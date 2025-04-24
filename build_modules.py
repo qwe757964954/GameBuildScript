@@ -49,6 +49,19 @@ def run_git_update():
         return False
         
     try:
+        # 添加安全目录配置
+        log_pipeline_step(f"配置Git安全目录: {project_path}")
+        safe_dir_process = subprocess.run(
+            ["git", "config", "--global", "--add", "safe.directory", project_path],
+            capture_output=True,
+            text=True
+        )
+        if safe_dir_process.returncode != 0:
+            log_pipeline_step(f"[WARNING] 配置Git安全目录失败: {safe_dir_process.stderr}")
+            log_pipeline_step("继续执行Git操作...")
+        else:
+            log_pipeline_step("Git安全目录配置完成")
+        
         # 切换到项目目录
         log_pipeline_step(f"切换到项目目录: {project_path}")
         os.chdir(project_path)
