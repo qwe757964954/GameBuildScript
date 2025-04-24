@@ -1,0 +1,5 @@
+{
+    "game_version": "1.0.0",
+    "game_type": "release",
+    "config_path": "buildConfig_android.json"
+}
