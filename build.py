@@ -58,10 +58,10 @@ def build_with_cocos_creator(exec_path: Path, project_dir: Path, config_file: Pa
     logger.info("开始使用 Cocos Creator 构建...")
 
     # 这里 params 用 json string 方式，兼容更多参数
-    params = f"configPath=./buildConfig_android.json"
+    # params = f"configPath=./buildConfig_android.json"
 
     # 拼接成一条完整的命令
-    command = f'"{str(exec_path)}" --project "{str(project_dir)}" --build {params}'
+    command = f'"{str(exec_path)}" --project "{str(project_dir)}" --build {config_file}'
 
     run_subprocess(command, logger)
     logger.info("Cocos Creator 构建完成 ✅")
